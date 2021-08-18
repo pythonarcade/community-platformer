@@ -4,10 +4,8 @@ Main Menu
 import arcade
 import arcade.gui
 
-from platformer.views import GameOverView, GameView, PauseView, SettingsView
 
-
-class MainMenuView(arcade.View):
+class PauseView(arcade.View):
     def __init__(self):
         super().__init__()
 
@@ -37,7 +35,7 @@ class MainMenuView(arcade.View):
             self.setup()
 
     def on_show_view(self):
-        arcade.set_background_color(arcade.color.ALMOND)
+        arcade.set_background_color(arcade.color.ASH_GREY)
         if self.ui_manager:
             self.ui_manager.enable()
 
@@ -48,33 +46,20 @@ class MainMenuView(arcade.View):
     def setup_buttons(self):
         self.v_box = arcade.gui.UIBoxGroup()
 
-        play_button = arcade.gui.UIFlatButton(text="Start Game", width=200)
+        resume_button = arcade.gui.UIFlatButton(text="Resume", width=200)
 
-        @play_button.event("on_click")
+        @resume_button.event("on_click")
         def on_click_play(event):
-            if "game" not in self.window.views:
-                self.window.views["game"] = GameView()
-                self.window.views["game_over"] = GameOverView()
-                self.window.views["pause"] = PauseView()
             self.window.show_view(self.window.views["game"])
 
-        self.v_box.add(play_button.with_space_around(bottom=20))
-
-        settings_button = arcade.gui.UIFlatButton(text="Settings", width=200)
-
-        @settings_button.event("on_click")
-        def on_click_settings(event):
-            if "settings" not in self.window.views:
-                self.window.views["settings"] = SettingsView()
-            self.window.show_view(self.window.views["settings"])
-
-        self.v_box.add(settings_button.with_space_around(bottom=20))
+        self.v_box.add(resume_button.with_space_around(bottom=20))
 
         quit_button = arcade.gui.UIFlatButton(text="Quit", width=200)
 
         @quit_button.event("on_click")
         def on_click_quit(event):
-            arcade.exit()
+            self.window.views["game"].started = False
+            self.window.show_view(self.window.views["main_menu"])
 
         self.v_box.add(quit_button)
 
@@ -82,7 +67,7 @@ class MainMenuView(arcade.View):
         arcade.start_render()
 
         arcade.draw_text(
-            "Arcade Community Platformer",
+            "Paused",
             self.window.width / 2,
             self.window.height - 125,
             arcade.color.ALLOY_ORANGE,
