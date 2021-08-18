@@ -1,3 +1,4 @@
+from .view import View
 from .view_game import GameView
 from .view_game_over import GameOverView
 from .view_pause import PauseView

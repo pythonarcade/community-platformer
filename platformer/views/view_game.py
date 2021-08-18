@@ -7,6 +7,7 @@ import os
 import arcade
 
 from platformer.constants import *
+from platformer.views import View
 
 
 def load_texture_pair(filename):
@@ -164,14 +165,12 @@ class PlayerCharacter(Entity):
         self.texture = self.walk_textures[self.cur_texture][self.facing_direction]
 
 
-class GameView(arcade.View):
+class GameView(View):
     def __init__(self):
         """
         Initializer for the game
         """
         super().__init__()
-
-        self.started = False
 
         # Set the path to start with this program
         file_path = os.path.dirname(os.path.abspath(__file__))
@@ -221,6 +220,8 @@ class GameView(arcade.View):
 
     def setup(self):
         """Set up the game here. Call this function to restart the game."""
+
+        super().setup()
 
         # Track the current state of what key is pressed
         self.left_pressed = False
@@ -324,12 +325,6 @@ class GameView(arcade.View):
             gravity_constant=GRAVITY,
             ladders=self.scene.get_sprite_list(LAYER_NAME_LADDERS),
         )
-
-        self.started = True
-
-    def on_show(self):
-        if not self.started:
-            self.setup()
 
     def on_show_view(self):
         arcade.set_background_color(self.tile_map.background_color)

@@ -4,20 +4,19 @@ Main Menu
 import arcade
 import arcade.gui
 
+from platformer.views import View
 
-class PauseView(arcade.View):
+
+class PauseView(View):
     def __init__(self):
         super().__init__()
-
-        self.started = False
-
-        # UI Manager to handle the GUI
-        self.ui_manager = None
 
         # A Vertical BoxGroup to align Buttons
         self.v_box = None
 
     def setup(self):
+        super().setup()
+
         self.ui_manager = arcade.gui.UIManager()
 
         self.setup_buttons()
@@ -28,20 +27,8 @@ class PauseView(arcade.View):
             )
         )
 
-        self.started = True
-
-    def on_show(self):
-        if not self.started:
-            self.setup()
-
     def on_show_view(self):
         arcade.set_background_color(arcade.color.ASH_GREY)
-        if self.ui_manager:
-            self.ui_manager.enable()
-
-    def on_hide_view(self):
-        if self.ui_manager:
-            self.ui_manager.disable()
 
     def setup_buttons(self):
         self.v_box = arcade.gui.UIBoxGroup()

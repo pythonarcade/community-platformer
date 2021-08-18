@@ -1,19 +1,18 @@
 import arcade
 import arcade.gui
 
+from platformer.views import View
 
-class GameOverView(arcade.View):
+
+class GameOverView(View):
     def __init__(self):
         super().__init__()
-
-        self.started = False
-
-        # UI Manager to handle the GUI
-        self.ui_manager = None
 
         self.v_box = None
 
     def setup(self):
+        super().setup()
+
         self.ui_manager = arcade.gui.UIManager()
 
         self.setup_buttons()
@@ -23,8 +22,6 @@ class GameOverView(arcade.View):
                 anchor_x="center_x", anchor_y="center_y", child=self.v_box
             )
         )
-
-        self.started = True
 
     def setup_buttons(self):
         self.v_box = arcade.gui.UIBoxGroup()
@@ -46,18 +43,8 @@ class GameOverView(arcade.View):
 
         self.v_box.add(quit_button)
 
-    def on_show(self):
-        if not self.started:
-            self.setup()
-
     def on_show_view(self):
         arcade.set_background_color(arcade.color.BLACK)
-        if self.ui_manager:
-            self.ui_manager.enable()
-
-    def on_hide_view(self):
-        if self.ui_manager:
-            self.ui_manager.disable()
 
     def on_draw(self):
         arcade.start_render()

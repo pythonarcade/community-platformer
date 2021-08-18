@@ -3,19 +3,12 @@ Main Menu
 """
 import arcade
 
+from platformer.views import View
 
-class SettingsView(arcade.View):
+
+class SettingsView(View):
     def __init__(self):
         super().__init__()
-
-        self.started = False
-
-    def setup(self):
-        self.started = True
-
-    def on_show(self):
-        if not self.started:
-            self.setup()
 
     def on_show_view(self):
         arcade.set_background_color(arcade.color.ALMOND)
