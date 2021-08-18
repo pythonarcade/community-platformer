@@ -33,7 +33,6 @@ class MainMenuView(arcade.View):
 
     def on_show(self):
         self.setup()
-        self.ui_manager.enable()
 
     def on_show_view(self):
         if self.ui_manager:
@@ -41,7 +40,6 @@ class MainMenuView(arcade.View):
 
     def on_hide_view(self):
         if self.ui_manager:
-            self.ui_manager.disable()
             self.ui_manager.disable()
 
     def setup_buttons(self):
@@ -65,7 +63,6 @@ class MainMenuView(arcade.View):
             settings_view = SettingsView()
             self.window.views["settings"] = settings_view
             self.window.views["settings"].setup()
-            # self.ui_manager.disable()
             self.window.show_view(self.window.views["settings"])
 
         self.v_box.add(settings_button.with_space_around(bottom=20))
