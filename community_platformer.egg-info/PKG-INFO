@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: community-platformer
+Version: 1.0.0a1
+Summary: An Open Source platformer game developed with Python using the Arcade library.
+Home-page: https://github.com/pythonarcade/community-platformer
+Author: Darren Eberly
+Author-email: darren.eberly@gmail.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Games/Entertainment :: Side-Scrolling/Arcade Games
+Requires-Python: >=3.6
+Provides-Extra: dev
