@@ -5,12 +5,15 @@ import arcade
 import arcade.gui
 
 from platformer.views.view_game import GameView
+from platformer.views.view_game_over import GameOverView
 from platformer.views.view_settings import SettingsView
 
 
 class MainMenuView(arcade.View):
     def __init__(self):
         super().__init__()
+
+        self.started = False
 
         # UI Manager to handle the GUI
         self.ui_manager = None
@@ -29,12 +32,14 @@ class MainMenuView(arcade.View):
             )
         )
 
-        arcade.set_background_color(arcade.color.ALMOND)
+        self.started = True
 
     def on_show(self):
-        self.setup()
+        if not self.started:
+            self.setup()
 
     def on_show_view(self):
+        arcade.set_background_color(arcade.color.ALMOND)
         if self.ui_manager:
             self.ui_manager.enable()
 
@@ -49,9 +54,9 @@ class MainMenuView(arcade.View):
 
         @play_button.event("on_click")
         def on_click_play(event):
-            game_view = GameView()
-            self.window.views["game"] = game_view
-            self.window.views["game"].setup()
+            if "game" not in self.window.views:
+                self.window.views["game"] = GameView()
+                self.window.views["game_over"] = GameOverView()
             self.window.show_view(self.window.views["game"])
 
         self.v_box.add(play_button.with_space_around(bottom=20))
@@ -60,9 +65,8 @@ class MainMenuView(arcade.View):
 
         @settings_button.event("on_click")
         def on_click_settings(event):
-            settings_view = SettingsView()
-            self.window.views["settings"] = settings_view
-            self.window.views["settings"].setup()
+            if "settings" not in self.window.views:
+                self.window.views["settings"] = SettingsView()
             self.window.show_view(self.window.views["settings"])
 
         self.v_box.add(settings_button.with_space_around(bottom=20))

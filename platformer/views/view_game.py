@@ -8,7 +8,16 @@ class GameView(arcade.View):
     def __init__(self):
         super().__init__()
 
+        self.started = False
+
     def setup(self):
+        self.started = True
+
+    def on_show(self):
+        if not self.started:
+            self.setup()
+
+    def on_show_view(self):
         arcade.set_background_color(arcade.color.BLACK)
 
     def on_draw(self):
@@ -36,3 +45,5 @@ class GameView(arcade.View):
     def on_key_press(self, symbol, modifiers):
         if symbol == arcade.key.ESCAPE:
             self.window.show_view(self.window.views["main_menu"])
+        elif symbol == arcade.key.Q:
+            self.window.show_view(self.window.views["game_over"])
