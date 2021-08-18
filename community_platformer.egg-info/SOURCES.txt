@@ -1,9 +1,0 @@
-LICENSE
-README.md
-setup.cfg
-setup.py
-community_platformer.egg-info/PKG-INFO
-community_platformer.egg-info/SOURCES.txt
-community_platformer.egg-info/dependency_links.txt
-community_platformer.egg-info/requires.txt
-community_platformer.egg-info/top_level.txt

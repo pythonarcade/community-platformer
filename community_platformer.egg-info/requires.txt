@@ -1,7 +1,0 @@
-arcade>=2.6.0.dev5
-
-[dev]
-mypy
-flake8
-black
-isort<5,>=4.2.5
