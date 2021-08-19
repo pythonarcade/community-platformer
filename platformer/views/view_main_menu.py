@@ -4,7 +4,7 @@ Main Menu
 import arcade
 import arcade.gui
 
-from platformer.views import GameOverView, GameView, PauseView, SettingsView, View
+from platformer.views import CharacterSelectView, SettingsView, View
 
 
 class MainMenuView(View):
@@ -36,11 +36,9 @@ class MainMenuView(View):
 
         @play_button.event("on_click")
         def on_click_play(event):
-            if "game" not in self.window.views:
-                self.window.views["game"] = GameView()
-                self.window.views["game_over"] = GameOverView()
-                self.window.views["pause"] = PauseView()
-            self.window.show_view(self.window.views["game"])
+            if "character_select" not in self.window.views:
+                self.window.views["character_select"] = CharacterSelectView()
+            self.window.show_view(self.window.views["character_select"])
 
         self.v_box.add(play_button.with_space_around(bottom=20))
 
