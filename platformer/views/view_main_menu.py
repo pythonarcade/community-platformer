@@ -30,7 +30,7 @@ class MainMenuView(View):
         arcade.set_background_color(arcade.color.ALMOND)
 
     def setup_buttons(self):
-        self.v_box = arcade.gui.UIBoxGroup()
+        self.v_box = arcade.gui.UIBoxLayout()
 
         play_button = arcade.gui.UIFlatButton(text="Start Game", width=200)
 

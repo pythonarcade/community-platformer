@@ -10,24 +10,6 @@ from platformer.views.view_game_over import GameOverView
 from platformer.views.view_pause import PauseView
 
 
-class UIInteractiveSpriteWidget(arcade.gui.UIInteractiveWidget):
-    """Create a UI element with a sprite that controls what is displayed."""
-
-    def __init__(
-        self, *, x=0, y=0, width=100, height=100, sprite: arcade.Sprite = None
-    ):
-        super().__init__(x, y, width, height)
-        self._sprite = sprite
-
-    def on_update(self, dt):
-        self._sprite.update()
-        self._sprite.update_animation(dt)  # ?
-
-    def render(self, surface: arcade.gui.Surface, force=False):
-        surface.clear((0, 0, 0, 0))
-        surface.draw_sprite(0, 0, self.width, self.height, self._sprite)
-
-
 class CharacterSelectView(View):
     def __init__(self):
         super().__init__()
@@ -62,13 +44,13 @@ class CharacterSelectView(View):
         arcade.set_background_color(arcade.color.ALMOND)
 
     def setup_buttons(self):
-        self.h_box_upper = arcade.gui.UIBoxGroup(vertical=False)
-        self.h_box_lower = arcade.gui.UIBoxGroup(vertical=False)
+        self.h_box_upper = arcade.gui.UIBoxLayout(vertical=False)
+        self.h_box_lower = arcade.gui.UIBoxLayout(vertical=False)
 
         character_one_image = "assets/images/sprites/players/person_female/character_femalePerson_idle.png"
-        character_one_sprite = arcade.Sprite(character_one_image)
-        character_one_button = UIInteractiveSpriteWidget(
-            sprite=character_one_sprite, width=192, height=192
+        character_one_texture = arcade.load_texture(character_one_image)
+        character_one_button = arcade.gui.UITextureButton(
+            texture=character_one_texture, width=192, height=192
         )
 
         @character_one_button.event("on_click")
@@ -78,9 +60,9 @@ class CharacterSelectView(View):
         self.h_box_upper.add(character_one_button.with_space_around(right=20))
 
         character_two_image = "assets/images/sprites/players/adventurer_male/character_maleAdventurer_idle.png"
-        character_two_sprite = arcade.Sprite(character_two_image)
-        character_two_button = UIInteractiveSpriteWidget(
-            sprite=character_two_sprite, width=192, height=192
+        character_two_texture = arcade.load_texture(character_two_image)
+        character_two_button = arcade.gui.UITextureButton(
+            texture=character_two_texture, width=192, height=192
         )
 
         @character_two_button.event("on_click")
@@ -90,9 +72,9 @@ class CharacterSelectView(View):
         self.h_box_upper.add(character_two_button.with_space_around(right=20))
 
         character_three_image = "assets/images/sprites/players/adventurer_female/character_femaleAdventurer_idle.png"
-        character_three_sprite = arcade.Sprite(character_three_image)
-        character_three_button = UIInteractiveSpriteWidget(
-            sprite=character_three_sprite, width=192, height=192
+        character_three_texture = arcade.load_texture(character_three_image)
+        character_three_button = arcade.gui.UITextureButton(
+            texture=character_three_texture, width=192, height=192
         )
 
         @character_three_button.event("on_click")
@@ -104,9 +86,9 @@ class CharacterSelectView(View):
         character_four_image = (
             "assets/images/sprites/players/person_male/character_malePerson_idle.png"
         )
-        character_four_sprite = arcade.Sprite(character_four_image)
-        character_four_button = UIInteractiveSpriteWidget(
-            sprite=character_four_sprite, width=192, height=192
+        character_four_texture = arcade.load_texture(character_four_image)
+        character_four_button = arcade.gui.UITextureButton(
+            texture=character_four_texture, width=192, height=192
         )
 
         @character_four_button.event("on_click")

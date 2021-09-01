@@ -24,7 +24,7 @@ class GameOverView(View):
         )
 
     def setup_buttons(self):
-        self.v_box = arcade.gui.UIBoxGroup()
+        self.v_box = arcade.gui.UIBoxLayout()
 
         restart_button = arcade.gui.UIFlatButton(text="Restart", width=200)
 

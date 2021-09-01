@@ -31,7 +31,7 @@ class PauseView(View):
         arcade.set_background_color(arcade.color.ASH_GREY)
 
     def setup_buttons(self):
-        self.v_box = arcade.gui.UIBoxGroup()
+        self.v_box = arcade.gui.UIBoxLayout()
 
         resume_button = arcade.gui.UIFlatButton(text="Resume", width=200)
 
